@@ -63,5 +63,9 @@ public class PlayerMovement : MonoBehaviour
                 this.transform.Rotate(new Vector3(0, 0, 1 * rotationSpeed));
             else if (Input.GetKey(KeyCode.RightArrow))
                 this.transform.Rotate(new Vector3(0, 0, -1 * rotationSpeed));
+            else
+                return;
+
+            rigidbody.angularVelocity = Vector3.zero;
     }
 }
