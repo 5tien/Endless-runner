@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -18,5 +18,10 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    public void PlaySoundEffect(AudioClip audioClip, AudioSource audioSource)
+    {
+        audioSource.PlayOneShot(audioClip);
     }
 }
