@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
             rigidbody.velocity = new Vector3(speed, oldVelocity.y, oldVelocity.z);
         }
-        else
+        else if (rigidbody.velocity.x < speed)
             rigidbody.AddForce(new Vector3(speed, 0));
     }
 
