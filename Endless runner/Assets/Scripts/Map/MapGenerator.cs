@@ -25,7 +25,7 @@ public class MapGenerator : MonoBehaviour
 
         for (int i = 0; i < 20; i++)
         {
-            GameObject newFloor = Instantiate(sections[0], currentPosition, Quaternion.Euler(new Vector3(0, 0, -Random.Range(4, 15))));
+            GameObject newFloor = Instantiate(sections[Random.Range(0, 2)], currentPosition, Quaternion.Euler(new Vector3(0, 0, -Random.Range(4, 15))));
             Floor floor = newFloor.GetComponent<Floor>();
 
             newFloor.transform.position = currentPosition + (newFloor.transform.position - floor.Begin.position);
