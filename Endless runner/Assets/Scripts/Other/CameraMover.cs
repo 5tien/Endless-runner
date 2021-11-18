@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class CameraMover : MonoBehaviour
 {
     [SerializeField] private GameObject target;
     [SerializeField] private Vector3 offset;

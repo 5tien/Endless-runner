@@ -147,7 +147,7 @@ PrefabInstance:
     - target: {fileID: 7434427663605087869, guid: e8dee3d78fb4aba4da36da2db01f4294,
         type: 3}
       propertyPath: speed
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7434427663605087870, guid: e8dee3d78fb4aba4da36da2db01f4294,
         type: 3}
@@ -260,7 +260,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 528199141}
-  offset: {x: 5, y: 0, z: 0}
+  offset: {x: 5, y: 1, z: 0}
 --- !u!1 &528199141 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7434427663605087867, guid: e8dee3d78fb4aba4da36da2db01f4294,
@@ -334,7 +334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087693189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1938548200}
