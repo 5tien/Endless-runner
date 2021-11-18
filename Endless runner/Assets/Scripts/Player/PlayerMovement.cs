@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Transform ray_point;
 
+    private float yRotate = 0;
+
     private void Start()
     {
         rigidbody = this.transform.GetComponent<Rigidbody>();
@@ -58,14 +60,24 @@ public class PlayerMovement : MonoBehaviour
 
     void RotatePlayer()
     {
-        if (IsOnFloor() == false)
-            if (Input.GetKey(KeyCode.LeftArrow))
-                this.transform.Rotate(new Vector3(0, 0, 1 * rotationSpeed));
-            else if (Input.GetKey(KeyCode.RightArrow))
-                this.transform.Rotate(new Vector3(0, 0, -1 * rotationSpeed));
-            else
-                return;
+        if (Input.GetKey(KeyCode.LeftArrow))
+            yRotate = yRotate + Time.deltaTime * (rotationSpeed / 5);
+        else if (Input.GetKey(KeyCode.RightArrow))
+            yRotate = yRotate - Time.deltaTime * (rotationSpeed / 5);
 
-            rigidbody.angularVelocity = Vector3.zero;
+        if (IsOnFloor() == true)
+        {
+            yRotate = 0;
+            return;
+        }
+        else if (yRotate >  1)
+            yRotate =  1;
+        else if (yRotate < -1)
+            yRotate = -1f;
+
+
+        rigidbody.angularVelocity = Vector3.zero;
+
+        this.transform.Rotate(0, 0, yRotate * rotationSpeed);
     }
 }
