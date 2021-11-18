@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Endless runner/Assets/Prefabs/Map.meta
 guid: 4af1acdb3456b6549bdb84e8c1b1dd17
+=======
+guid: c3c16fa0bf6cfc34b823a7996a98e61e
+>>>>>>> origin/Yael:Endless runner/Assets/Sprites.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
