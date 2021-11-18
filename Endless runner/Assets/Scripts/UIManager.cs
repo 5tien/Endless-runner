@@ -9,8 +9,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI HighScoreText;
-    private int score;
-    private int highScore;
 
     private void Awake()
     {
@@ -27,26 +25,12 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds the given amount of point to the player and updates the high score if necessary.
-    /// </summary>
-    /// <param name="amount">the amount you want to add to the score</param>
-    public void AddScore(int amount)
-    {
-        score = score + amount;
-        if(score >= highScore)
-        {
-            highScore = score;
-        }
-        UIManager.instance.UpdateScoreUI();
-    }
-
-    /// <summary>
     /// updates the score UI and the high score UI.
     /// </summary>
     public void UpdateScoreUI()
     {
-        scoreText.text = string.Format("Score: {0}", score);
-        HighScoreText.text = string.Format("HighScore: {0}", highScore);
+        scoreText.text = string.Format("Score: {0}", GameManager.instance.score);
+        HighScoreText.text = string.Format("HighScore: {0}", GameManager.instance.highScore);
     }
 
     /// <summary>
