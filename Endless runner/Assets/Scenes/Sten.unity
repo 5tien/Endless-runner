@@ -206,6 +206,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8dee3d78fb4aba4da36da2db01f4294, type: 3}
+--- !u!1 &206556315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 206556316}
+  m_Layer: 0
+  m_Name: Obstacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &206556316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206556315}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1938548200}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519591234
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +434,11 @@ MonoBehaviour:
   - {fileID: 2802183351587098319, guid: a8fe9b7554e40d643a9eeef6a050c172, type: 3}
   beginPosition: {fileID: 1087693190}
   mapParent: {fileID: 1247208579}
+  minFloor: 59
+  obstacles:
+  - {fileID: 8745350718871171903, guid: f280974f629b9d24ab3daa7446b637a4, type: 3}
+  obstacleParent: {fileID: 206556316}
+  spawnChance: 100
 --- !u!4 &1938548200
 Transform:
   m_ObjectHideFlags: 0
@@ -417,6 +452,7 @@ Transform:
   m_Children:
   - {fileID: 1087693190}
   - {fileID: 1247208579}
+  - {fileID: 206556316}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
