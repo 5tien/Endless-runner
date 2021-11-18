@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit[] hits = Physics.RaycastAll(this.transform.position, ray_point.position - this.transform.position, 1);
 
+        Debug.DrawRay(this.transform.position, ray_point.position - this.transform.position, Color.green);
+
         for (int i = 0; i < hits.Length; i++)
             if (hits[i].transform.GetComponent<Floor>())
                 return true;
