@@ -5,7 +5,9 @@ using UnityEngine;
 public class MapManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> sections = new List<GameObject>();
+
     [SerializeField] private Transform beginPosition;
+    [SerializeField] private Transform mapParent;
 
     private List<GameObject> placedSections = new List<GameObject>();
 
@@ -20,13 +22,13 @@ public class MapManager : MonoBehaviour
 
     void CreateFloor(int _type, float _rotation)
     {
-        GameObject newFloor = Instantiate(sections[_type], currentPosition, Quaternion.Euler(new Vector3(0, 0, -_rotation)));
+        GameObject newFloor = Instantiate(sections[_type], mapParent);
         Floor floor = newFloor.GetComponent<Floor>();
 
+        newFloor.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -_rotation));
         newFloor.transform.position = currentPosition + (newFloor.transform.position - floor.Begin.position);
 
         currentPosition = floor.End.position;
-
         placedSections.Add(newFloor);
     }
 
@@ -38,12 +40,16 @@ public class MapManager : MonoBehaviour
         {
             GameObject floor = placedSections[i];
 
-            if (!floor.GetComponent<Renderer>().isVisible && Camera.main.transform.position.x - 25 > floor.GetComponent<Floor>().End.position.x)
+            if (Camera.main.transform.position.x - 25 > floor.GetComponent<Floor>().End.position.x)
             {
                 placedSections.Remove(floor);
                 Destroy(floor);
             }
         }
+
+        if (placedSections.Count < 20)
+            for (int i = 0; i < 20 - placedSections.Count; i++)
+                CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
 
         StartCoroutine(CheckFloors());
     }
@@ -52,7 +58,7 @@ public class MapManager : MonoBehaviour
     {
         currentPosition = beginPosition.position;
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 20; i++)
         {
             CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
         }
