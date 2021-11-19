@@ -20,7 +20,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform obstacleParent;
     
     [Tooltip("The chance of an obstacle spawning")]
-    [Range(1, 100)] [SerializeField] private int spawnChance;
+    [Range(1, 100)] [SerializeField] private float spawnChance;
 
 
     private List<GameObject> placedSections = new List<GameObject>();
@@ -34,12 +34,12 @@ public class MapManager : MonoBehaviour
             Destroy(this);
     }
 
-    void CreateObstacle(int _type, float _rotation, Vector3 _position)
+    void CreateObstacle(int _type, GameObject _floor)
     {
         GameObject newObstacle = Instantiate(obstacles[_type], obstacleParent);
 
-        newObstacle.transform.rotation = Quaternion.Euler(0, 0, _rotation);
-        newObstacle.transform.position = _position;
+        newObstacle.transform.position = _floor.transform.position + new Vector3(0, _floor.transform.localScale.y / 2 - (newObstacle.GetComponent<Obstacle>().spawnPoint.position.y - newObstacle.transform.position.y), 0);
+        newObstacle.transform.rotation = _floor.transform.rotation;
 
         placedObstacles.Add(newObstacle);
     }
@@ -54,13 +54,30 @@ public class MapManager : MonoBehaviour
 
         currentPosition = floor.End.position;
         placedSections.Add(newFloor);
+
+        if (Random.Range(0, 100) <= spawnChance - 1)
+            CreateObstacle(Random.Range(0, 2), newFloor);
+
+        if (spawnChance < 30)
+            spawnChance += 0.08f;
     }
 
     IEnumerator CheckObstacles()
     {
         yield return new WaitForSeconds(1);
 
+        for (int i = 0; i < placedObstacles.Count; i++)
+        {
+            GameObject obstacle = placedObstacles[i];
 
+            if (Camera.main.transform.position.x - 25 > obstacle.transform.position.x)
+            {
+                placedObstacles.Remove(obstacle);
+                Destroy(obstacle);
+            }
+        }
+
+        StartCoroutine(CheckObstacles());
     }
 
     IEnumerator CheckFloors()
@@ -95,5 +112,6 @@ public class MapManager : MonoBehaviour
         }
 
         StartCoroutine(CheckFloors());
+        StartCoroutine(CheckObstacles());
     }
 }
