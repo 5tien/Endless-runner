@@ -2,13 +2,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     static public UIManager instance;
 
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI HighScoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private GameObject pauzeScreen;
+    [SerializeField] private GameObject settingsScreen;
 
     private void Awake()
     {
@@ -29,8 +32,15 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void UpdateScoreUI()
     {
-        scoreText.text = string.Format("Score: {0}", GameManager.instance.score);
-        HighScoreText.text = string.Format("HighScore: {0}", GameManager.instance.highScore);
+        if (scoreText != null || highScoreText != null)
+        {
+            scoreText.text = string.Format("Score: {0}", GameManager.instance.score);
+            highScoreText.text = string.Format("HighScore: {0}", GameManager.instance.highScore);
+        }
+        else
+        {
+            Debug.LogError("ScoreText and/or HighScoreText are/is empty");
+        }
     }
 
     /// <summary>
