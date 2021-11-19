@@ -163,8 +163,10 @@ GameObject:
   - component: {fileID: 418411986}
   - component: {fileID: 418411985}
   - component: {fileID: 418411984}
+  - component: {fileID: 418411988}
+  - component: {fileID: 418411989}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +180,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418411983}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -238,12 +240,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418411983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.483, y: -0.759, z: -4.2296867}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.42364728, y: 5.4777956, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1644588994}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &418411988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418411983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d662cfd5017b44d96ae75cada90bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &418411989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418411983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18412d551c107184fa653fb40fbff15f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
 --- !u!1 &519591234
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +596,36 @@ Transform:
   m_Father: {fileID: 1938548200}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1644588993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644588994}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1644588994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644588993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418411987}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938548198
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,6 +664,7 @@ MonoBehaviour:
   minFloor: 59
   obstacles:
   - {fileID: 8745350718871171903, guid: f280974f629b9d24ab3daa7446b637a4, type: 3}
+  - {fileID: 6939829511347933432, guid: 33bd5a7468ce9504185bdf3d67d76904, type: 3}
   obstacleParent: {fileID: 206556316}
   spawnChance: 20
 --- !u!4 &1938548200
@@ -631,6 +690,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8633550337477653264}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2088981302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088981296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec46c0ff62e0724697780269400b655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8633550337477653264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -711,7 +782,7 @@ PrefabInstance:
     - target: {fileID: 8633550338878365733, guid: 4a6f8290136b4fc4cb09d7188d6b55bc,
         type: 3}
       propertyPath: rotationSpeed
-      value: 15
+      value: 350
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a6f8290136b4fc4cb09d7188d6b55bc, type: 3}

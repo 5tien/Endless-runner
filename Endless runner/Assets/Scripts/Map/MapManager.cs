@@ -38,8 +38,8 @@ public class MapManager : MonoBehaviour
     {
         GameObject newObstacle = Instantiate(obstacles[_type], obstacleParent);
 
-        newObstacle.transform.rotation = Quaternion.Euler(0, 0, _floor.transform.rotation.z);
         newObstacle.transform.position = _floor.transform.position + new Vector3(0, _floor.transform.localScale.y / 2 - (newObstacle.GetComponent<Obstacle>().spawnPoint.position.y - newObstacle.transform.position.y), 0);
+        newObstacle.transform.rotation = _floor.transform.rotation;
 
         placedObstacles.Add(newObstacle);
     }
