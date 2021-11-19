@@ -60,6 +60,8 @@ public class MapManager : MonoBehaviour
 
         if (spawnChance < 30)
             spawnChance += 0.1f;
+
+        print(spawnChance);
     }
 
     IEnumerator CheckObstacles()
