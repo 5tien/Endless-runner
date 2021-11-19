@@ -59,9 +59,7 @@ public class MapManager : MonoBehaviour
             CreateObstacle(0, -_rotation, newFloor.transform.position + Vector3.up);
 
         if (spawnChance < 30)
-            spawnChance += 0.1f;
-
-        print(spawnChance);
+            spawnChance += 0.08f;
     }
 
     IEnumerator CheckObstacles()
