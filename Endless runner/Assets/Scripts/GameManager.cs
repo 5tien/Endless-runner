@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     static public GameManager instance;
+    [SerializeField] private UIManager uiManager;
 
     public int score;
     public int highScore;
@@ -33,6 +34,6 @@ public class GameManager : MonoBehaviour
         {
             highScore = score;
         }
-        UIManager.instance.UpdateScoreUI();
+        uiManager.UpdateScoreUI();
     }
 }

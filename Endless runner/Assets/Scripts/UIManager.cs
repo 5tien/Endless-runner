@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    static public UIManager instance;
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
@@ -15,16 +14,12 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    void Update()
+    {
+    
     }
 
     /// <summary>
