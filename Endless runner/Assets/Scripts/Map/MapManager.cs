@@ -34,12 +34,12 @@ public class MapManager : MonoBehaviour
             Destroy(this);
     }
 
-    void CreateObstacle(int _type, float _rotation, Vector3 _position)
+    void CreateObstacle(int _type, GameObject _floor)
     {
         GameObject newObstacle = Instantiate(obstacles[_type], obstacleParent);
 
-        newObstacle.transform.rotation = Quaternion.Euler(0, 0, _rotation);
-        newObstacle.transform.position = _position;
+        newObstacle.transform.rotation = Quaternion.Euler(0, 0, _floor.transform.rotation.z);
+        newObstacle.transform.position = _floor.transform.position + new Vector3(0, _floor.transform.localScale.y / 2 - (newObstacle.GetComponent<Obstacle>().spawnPoint.position.y - newObstacle.transform.position.y), 0);
 
         placedObstacles.Add(newObstacle);
     }
@@ -56,7 +56,7 @@ public class MapManager : MonoBehaviour
         placedSections.Add(newFloor);
 
         if (Random.Range(0, 100) <= spawnChance - 1)
-            CreateObstacle(0, -_rotation, newFloor.transform.position + Vector3.up);
+            CreateObstacle(Random.Range(0, 2), newFloor);
 
         if (spawnChance < 30)
             spawnChance += 0.08f;
