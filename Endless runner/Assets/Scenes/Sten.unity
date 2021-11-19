@@ -347,7 +347,7 @@ MonoBehaviour:
   obstacles:
   - {fileID: 8745350718871171903, guid: f280974f629b9d24ab3daa7446b637a4, type: 3}
   obstacleParent: {fileID: 206556316}
-  spawnChance: 100
+  spawnChance: 20
 --- !u!4 &1938548200
 Transform:
   m_ObjectHideFlags: 0
@@ -437,6 +437,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633550338878365733, guid: 4a6f8290136b4fc4cb09d7188d6b55bc,
+        type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8633550338878365733, guid: 4a6f8290136b4fc4cb09d7188d6b55bc,
         type: 3}

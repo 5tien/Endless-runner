@@ -20,7 +20,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform obstacleParent;
     
     [Tooltip("The chance of an obstacle spawning")]
-    [Range(1, 100)] [SerializeField] private int spawnChance;
+    [Range(1, 100)] [SerializeField] private float spawnChance;
 
 
     private List<GameObject> placedSections = new List<GameObject>();
@@ -54,13 +54,30 @@ public class MapManager : MonoBehaviour
 
         currentPosition = floor.End.position;
         placedSections.Add(newFloor);
+
+        if (Random.Range(0, 100) <= spawnChance - 1)
+            CreateObstacle(0, -_rotation, newFloor.transform.position + Vector3.up);
+
+        if (spawnChance < 30)
+            spawnChance += 0.1f;
     }
 
     IEnumerator CheckObstacles()
     {
         yield return new WaitForSeconds(1);
 
+        for (int i = 0; i < placedObstacles.Count; i++)
+        {
+            GameObject obstacle = placedObstacles[i];
 
+            if (Camera.main.transform.position.x - 25 > obstacle.transform.position.x)
+            {
+                placedObstacles.Remove(obstacle);
+                Destroy(obstacle);
+            }
+        }
+
+        StartCoroutine(CheckObstacles());
     }
 
     IEnumerator CheckFloors()
@@ -95,5 +112,6 @@ public class MapManager : MonoBehaviour
         }
 
         StartCoroutine(CheckFloors());
+        StartCoroutine(CheckObstacles());
     }
 }
