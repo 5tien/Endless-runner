@@ -24,14 +24,6 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateScoreUI();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddScore(10);
-        }
-    }
-
     /// <summary>
     /// Adds the given amount of point to the player and updates the high score if necessary.
     /// </summary>
