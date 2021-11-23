@@ -81,6 +81,9 @@ public class UIManager : MonoBehaviour
         UpdateScoreUI();
     }
 
+    /// <summary>
+    /// if the PauzeScreen is active it will be turned of and if PauzeScreen is inactive it wil be turned on;
+    /// </summary>
     public void PauzeScreen()
     {
         if(pauzeScreen.active == true)
@@ -89,6 +92,21 @@ public class UIManager : MonoBehaviour
         }else if(pauzeScreen.active == false)
         {
             pauzeScreen.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// if the SettingsScreen is active it will be turned of and if SettingsScreen is inactive it wil be turned on;
+    /// </summary>
+    public void SettingsScreen()
+    {
+        if (settingsScreen.active == true)
+        {
+            settingsScreen.SetActive(false);
+        }
+        else if (settingsScreen.active == false)
+        {
+            settingsScreen.SetActive(true);
         }
     }
 
