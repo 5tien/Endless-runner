@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 590552328213504949}
   - component: {fileID: 6667140174038072301}
   - component: {fileID: 3147532407542670273}
+  - component: {fileID: -5245362359973801300}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -138,3 +139,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 673535542950185257}
+  CausesDamage: 1
+--- !u!114 &-5245362359973801300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745350718871171903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f79e57d670b064d8235773270fa715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 0

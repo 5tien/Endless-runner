@@ -11,7 +11,9 @@ public class PlayerCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.GetComponent<Floor>() || other.transform.GetComponent<Obstacle>())
+        Obstacle obstacle = other.transform.GetComponent<Obstacle>();
+
+        if (obstacle && obstacle.CausesDamage == true)
             Death();
     }
 

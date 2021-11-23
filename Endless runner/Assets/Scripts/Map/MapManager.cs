@@ -41,7 +41,7 @@ public class MapManager : MonoBehaviour
 
     void CreateObstacle(int _type, GameObject _floor)
     {
-        GameObject newObstacle = Instantiate(obstacles[_type], obstacleParent);
+        GameObject newObstacle = objectPool.GetObject(_type, Vector3.zero, Quaternion.identity, null);
 
         newObstacle.transform.position = _floor.transform.position + new Vector3(0, _floor.transform.localScale.y / 2 - (newObstacle.GetComponent<Obstacle>().spawnPoint.position.y - newObstacle.transform.position.y), 0);
         newObstacle.transform.rotation = _floor.transform.rotation;
