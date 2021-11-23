@@ -19,7 +19,10 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-    
+        if(Input.GetKeyDown(KeyCode.Escape))
+        { 
+            PauzeScreen();
+        }
     }
 
     /// <summary>
@@ -68,6 +71,25 @@ public class UIManager : MonoBehaviour
         AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0], AudioManager.instance.audioSources[0]);
         yield return new WaitForSeconds(0.5f);
         Application.Quit();
+    }
+
+    public void ResetHighScore()
+    {
+        PlayerPrefs.DeleteKey("HighScore");
+        GameManager.instance.score = 0;
+        GameManager.instance.highScore = 0;
+        UpdateScoreUI();
+    }
+
+    public void PauzeScreen()
+    {
+        if(pauzeScreen.active == true)
+        {
+            pauzeScreen.SetActive(false);
+        }else if(pauzeScreen.active == false)
+        {
+            pauzeScreen.SetActive(true);
+        }
     }
 
     public void ExitGameButton()

@@ -20,7 +20,16 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        highScore = PlayerPrefs.GetInt("HighScore",0);
+        uiManager.UpdateScoreUI();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            AddScore(10);
+        }
     }
 
     /// <summary>
@@ -33,6 +42,7 @@ public class GameManager : MonoBehaviour
         if (score >= highScore)
         {
             highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
         }
         uiManager.UpdateScoreUI();
     }
