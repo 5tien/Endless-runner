@@ -11,7 +11,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform mapParent;
 
     [Tooltip("Minimal amount of floors at all time")]
-    [Min(20)] [SerializeField] private int minFloor;
+    [Min(0)] [SerializeField] private int minFloor;
 
 
     [Header("Obstacle Settings Settings")]
@@ -20,8 +20,10 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform obstacleParent;
     
     [Tooltip("The chance of an obstacle spawning")]
-    [Range(1, 100)] [SerializeField] private int spawnChance;
+    [Range(1, 100)] [SerializeField] private float spawnChance;
 
+    private Pool floorPool;
+    private Pool objectPool;
 
     private List<GameObject> placedSections = new List<GameObject>();
     private List<GameObject> placedObstacles = new List<GameObject>();
@@ -32,21 +34,25 @@ public class MapManager : MonoBehaviour
     {
         if (beginPosition == null || sections.Count == 0)
             Destroy(this);
+
+        floorPool = mapParent.GetComponent<Pool>();
+        objectPool = obstacleParent.GetComponent<Pool>();
     }
 
-    void CreateObstacle(int _type, float _rotation, Vector3 _position)
+    void CreateObstacle(int _type, GameObject _floor)
     {
         GameObject newObstacle = Instantiate(obstacles[_type], obstacleParent);
 
-        newObstacle.transform.rotation = Quaternion.Euler(0, 0, _rotation);
-        newObstacle.transform.position = _position;
+        newObstacle.transform.position = _floor.transform.position + new Vector3(0, _floor.transform.localScale.y / 2 - (newObstacle.GetComponent<Obstacle>().spawnPoint.position.y - newObstacle.transform.position.y), 0);
+        newObstacle.transform.rotation = _floor.transform.rotation;
 
         placedObstacles.Add(newObstacle);
     }
 
     void CreateFloor(int _type, float _rotation)
     {
-        GameObject newFloor = Instantiate(sections[_type], mapParent);
+        GameObject newFloor = floorPool.GetObject(_type, Vector3.zero, Quaternion.identity, null);
+
         Floor floor = newFloor.GetComponent<Floor>();
 
         newFloor.transform.rotation = Quaternion.Euler(0, 0, -_rotation);
@@ -54,35 +60,55 @@ public class MapManager : MonoBehaviour
 
         currentPosition = floor.End.position;
         placedSections.Add(newFloor);
+
+        if (Random.Range(0, 100) <= spawnChance - 1)
+            CreateObstacle(Random.Range(0, 2), newFloor);
+
+        if (spawnChance < 30)
+            spawnChance += 0.08f;
     }
 
     IEnumerator CheckObstacles()
     {
-        yield return new WaitForSeconds(1);
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
 
+            for (int i = 0; i < placedObstacles.Count; i++)
+            {
+                GameObject obstacle = placedObstacles[i];
 
+                if (Camera.main.transform.position.x - 25 > obstacle.transform.position.x)
+                {
+                    placedObstacles.Remove(obstacle);
+                    obstacle.GetComponent<PoolItem>().ReturnToPool();
+                }
+            }
+        }
     }
 
     IEnumerator CheckFloors()
     {
-        yield return new WaitForSeconds(1);
-
-        for (int i = 0; i < placedSections.Count; i++)
+        while (true)
         {
-            GameObject floor = placedSections[i];
+            yield return new WaitForSeconds(1);
 
-            if (Camera.main.transform.position.x - 25 > floor.GetComponent<Floor>().End.position.x)
+            for (int i = 0; i < placedSections.Count; i++)
             {
-                placedSections.Remove(floor);
-                Destroy(floor);
+                GameObject floor = placedSections[i];
+
+                if (Camera.main.transform.position.x - 25 > floor.GetComponent<Floor>().End.position.x)
+                {
+                    placedSections.Remove(floor);
+                    floor.GetComponent<PoolItem>().ReturnToPool();
+                }
             }
+
+            if (placedSections.Count < minFloor)
+                for (int i = 0; i < minFloor - placedSections.Count; i++)
+                    CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
+
         }
-
-        if (placedSections.Count < minFloor)
-            for (int i = 0; i < minFloor - placedSections.Count; i++)
-                CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
-
-        StartCoroutine(CheckFloors());
     }
 
     void Start()
@@ -95,5 +121,6 @@ public class MapManager : MonoBehaviour
         }
 
         StartCoroutine(CheckFloors());
+        StartCoroutine(CheckObstacles());
     }
 }

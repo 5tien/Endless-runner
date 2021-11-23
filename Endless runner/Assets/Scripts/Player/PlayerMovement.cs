@@ -61,9 +61,9 @@ public class PlayerMovement : MonoBehaviour
     void RotatePlayer()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
-            yRotate = yRotate + Time.deltaTime * (rotationSpeed / 5);
+            yRotate = yRotate + Time.deltaTime * (rotationSpeed / 50);
         else if (Input.GetKey(KeyCode.RightArrow))
-            yRotate = yRotate - Time.deltaTime * (rotationSpeed / 5);
+            yRotate = yRotate - Time.deltaTime * (rotationSpeed / 50);
 
         if (IsOnFloor() == true)
         {
@@ -78,6 +78,6 @@ public class PlayerMovement : MonoBehaviour
 
         rigidbody.angularVelocity = Vector3.zero;
 
-        this.transform.Rotate(0, 0, yRotate * rotationSpeed);
+        this.transform.Rotate(0, 0, yRotate * rotationSpeed * Time.deltaTime);
     }
 }
