@@ -42,8 +42,9 @@ GameObject:
   - component: {fileID: 6939829511347933413}
   - component: {fileID: 6939829511347933414}
   - component: {fileID: 6939829511347933415}
-  - component: {fileID: 6939829511347933411}
   - component: {fileID: 7113132256542664520}
+  - component: {fileID: 6810042718544596614}
+  - component: {fileID: 1553322687983273995}
   m_Layer: 0
   m_Name: Ring
   m_TagString: Untagged
@@ -126,18 +127,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6939829511347933411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6939829511347933432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d662cfd5017b44d96ae75cada90bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7113132256542664520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +140,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2020406748757358396}
+  CausesDamage: 0
+--- !u!114 &6810042718544596614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6939829511347933432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f79e57d670b064d8235773270fa715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 0
+--- !u!114 &1553322687983273995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6939829511347933432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd55123d570ace41b6fd379e0362c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 100

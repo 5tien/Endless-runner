@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ring : MonoBehaviour
+public class Points : MonoBehaviour
 {
+    [SerializeField] private int amount;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Player>())
