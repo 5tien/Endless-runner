@@ -6,22 +6,24 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
+    [Header("Score Text")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
+
+    [Header("Menu Objects")]
     [SerializeField] private GameObject pauzeScreen;
     [SerializeField] private GameObject settingsScreen;
     [SerializeField] private GameObject mainMenuScreen;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    [Header("Death Screen Components")]
+    [SerializeField] private GameObject deathScreen;
+    [SerializeField] private TextMeshProUGUI scoreDeathText;
+    [SerializeField] private TextMeshProUGUI highDeathText;
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        { 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             PauzeScreen();
         }
     }
@@ -48,7 +50,7 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator LoadGame()
     {
-        AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0], AudioManager.instance.audioSources[0]);
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0]);
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Game");
     }
@@ -59,7 +61,7 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator LoadMainMenu()
     {
-        AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0], AudioManager.instance.audioSources[0]);
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0]);
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("MainMenu");
     }
@@ -69,7 +71,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private IEnumerator ExitGame()
     {
-        AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0], AudioManager.instance.audioSources[0]);
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0]);
         yield return new WaitForSeconds(0.5f);
         Application.Quit();
     }
@@ -80,6 +82,16 @@ public class UIManager : MonoBehaviour
         GameManager.instance.score = 0;
         GameManager.instance.highScore = 0;
         UpdateScoreUI();
+    }
+
+    public void DeathScreeen()
+    {
+        if(deathScreen != null)
+        {
+            deathScreen.SetActive(true);
+            scoreDeathText.text = string.Format("Your Score: {0}", GameManager.instance.score);
+            highDeathText.text = string.Format("Your HighScore: {0}", GameManager.instance.highScore);
+        }
     }
 
     /// <summary>

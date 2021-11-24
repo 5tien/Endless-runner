@@ -6,7 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     static public AudioManager instance;
     public AudioClip[] audioClips;
-    public AudioSource[] audioSources;
+    public AudioSource soundEffectPlayer;
+    public AudioSource backgroundMusicPlayer;
 
     private void Awake()
     {
@@ -18,10 +19,17 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
-    public void PlaySoundEffect(AudioClip audioClip, AudioSource audioSource)
+    public void PlaySoundEffect(AudioClip audioClip)
     {
-        audioSource.PlayOneShot(audioClip);
+        soundEffectPlayer.PlayOneShot(audioClip);
+    }
+
+    public void PlayBackGroundMusic(int number)
+    {
+        backgroundMusicPlayer.Play();
     }
 }

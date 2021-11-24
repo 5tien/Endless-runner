@@ -693,11 +693,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7642752624193052298, guid: a6622a61f56b2c9449b3420463d01f1d,
-        type: 3}
-      propertyPath: audioClips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 1b2a5d20d4cfa05479ad1346e5f58c27, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6622a61f56b2c9449b3420463d01f1d, type: 3}
 --- !u!1 &1780764076
@@ -1105,6 +1100,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 5197513656251259185, guid: f4a7f2497bbaaa647b2ec12642b6ae6b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7086323533115934921, guid: f4a7f2497bbaaa647b2ec12642b6ae6b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1218,6 +1218,36 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3088929890259232030}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3088929890259232032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 218537833112574928, guid: f4a7f2497bbaaa647b2ec12642b6ae6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3088929890259232030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3088929890259232033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8410365415047488149, guid: f4a7f2497bbaaa647b2ec12642b6ae6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3088929890259232030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3088929890259232034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5197513656251259185, guid: f4a7f2497bbaaa647b2ec12642b6ae6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3088929890259232030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6245326305692086134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1232,6 +1262,11 @@ PrefabInstance:
       objectReference: {fileID: 307600783}
     - target: {fileID: 99572791174972489, guid: 843ca0f9d89273c4eb72867b750b515b,
         type: 3}
+      propertyPath: deathScreen
+      value: 
+      objectReference: {fileID: 3088929890259232034}
+    - target: {fileID: 99572791174972489, guid: 843ca0f9d89273c4eb72867b750b515b,
+        type: 3}
       propertyPath: pauzeScreen
       value: 
       objectReference: {fileID: 1488928430}
@@ -1242,6 +1277,11 @@ PrefabInstance:
       objectReference: {fileID: 481459708}
     - target: {fileID: 99572791174972489, guid: 843ca0f9d89273c4eb72867b750b515b,
         type: 3}
+      propertyPath: highDeathText
+      value: 
+      objectReference: {fileID: 3088929890259232032}
+    - target: {fileID: 99572791174972489, guid: 843ca0f9d89273c4eb72867b750b515b,
+        type: 3}
       propertyPath: highScoreText
       value: 
       objectReference: {fileID: 481459708}
@@ -1250,6 +1290,11 @@ PrefabInstance:
       propertyPath: mainMenuScreen
       value: 
       objectReference: {fileID: 1935054891}
+    - target: {fileID: 99572791174972489, guid: 843ca0f9d89273c4eb72867b750b515b,
+        type: 3}
+      propertyPath: scoreDeathText
+      value: 
+      objectReference: {fileID: 3088929890259232033}
     - target: {fileID: 99572791174972489, guid: 843ca0f9d89273c4eb72867b750b515b,
         type: 3}
       propertyPath: settingsScreen
