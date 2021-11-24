@@ -552,7 +552,7 @@ MonoBehaviour:
   - {fileID: 8745350718871171903, guid: f280974f629b9d24ab3daa7446b637a4, type: 3}
   - {fileID: 6939829511347933432, guid: 33bd5a7468ce9504185bdf3d67d76904, type: 3}
   obstacleParent: {fileID: 206556316}
-  spawnChance: 1
+  spawnChance: 15
 --- !u!4 &1938548200
 Transform:
   m_ObjectHideFlags: 0

@@ -52,10 +52,44 @@ public class PlayerMovement : MonoBehaviour
             rigidbody.AddForce(new Vector3(speed, 0));
     }
 
+    IEnumerator Spin()
+    {
+        int used = 0;
+        float rotation = 0;
+
+        yield return new WaitForSeconds(0.1f);
+
+        while (IsOnFloor() == false)
+        {
+            print("YIKES");
+            if (Input.GetKey(KeyCode.LeftArrow) && (used == 0 || used == 2))
+            {
+                used = 1;
+                rotation = this.transform.rotation.z + 25;
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow) && (used == 0 || used == 1))
+            {
+                used = 2;
+                rotation = this.transform.rotation.z - 25;
+            }
+            
+            if (used != 0 && this.transform.rotation.z > rotation && this.transform.rotation.z < rotation + (used == 0 ? used : 25))
+                print("DAMN");
+
+
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsOnFloor() == true)
+        {
             rigidbody.AddForce(new Vector3(0, jumpPower * 10));
+            StartCoroutine(Spin());
+        }
     }
 
     void RotatePlayer()
@@ -70,8 +104,8 @@ public class PlayerMovement : MonoBehaviour
             yRotate = 0;
             return;
         }
-        else if (yRotate >  1)
-            yRotate =  1;
+        else if (yRotate > 1)
+            yRotate = 1;
         else if (yRotate < -1)
             yRotate = -1f;
 
