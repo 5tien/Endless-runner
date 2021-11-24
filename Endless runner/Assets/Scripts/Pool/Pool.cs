@@ -26,14 +26,10 @@ public class Pool : MonoBehaviour
             stack.Add(new Stack<PoolItem>());
         }
 
-        //objectPool = new Stack<PoolItem>();
-
         for (int i = 0; i < poolPrefabs.Count; i++)
         {
             Expand(poolSize, i);
         }
-
-        //Expand(poolSize);
 
         if (expansionSize == 0)
             expansionSize = 1;
