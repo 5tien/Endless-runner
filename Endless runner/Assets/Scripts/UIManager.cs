@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private GameObject pauzeScreen;
     [SerializeField] private GameObject settingsScreen;
+    [SerializeField] private GameObject mainMenuScreen;
 
     private void Awake()
     {
@@ -86,12 +87,23 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void PauzeScreen()
     {
-        if(pauzeScreen.active == true)
+        if (pauzeScreen != null)
         {
-            pauzeScreen.SetActive(false);
-        }else if(pauzeScreen.active == false)
+            if (pauzeScreen.active == true)
+            {
+                pauzeScreen.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else if (pauzeScreen.active == false)
+            {
+                pauzeScreen.SetActive(true);
+                settingsScreen.SetActive(false);
+                Time.timeScale = 0;
+            }
+        }
+        else
         {
-            pauzeScreen.SetActive(true);
+            Debug.LogError("The game cant be pauzed. because the pauzescreen = null");
         }
     }
 
@@ -100,13 +112,31 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void SettingsScreen()
     {
-        if (settingsScreen.active == true)
+        if (mainMenuScreen != null)
         {
-            settingsScreen.SetActive(false);
-        }
-        else if (settingsScreen.active == false)
+            if (settingsScreen.active == true)
+            {
+                settingsScreen.SetActive(false);
+                mainMenuScreen.SetActive(true);
+            }
+            else if (settingsScreen.active == false)
+            {
+                settingsScreen.SetActive(true);
+                mainMenuScreen.SetActive(false);
+            }
+        }else if(pauzeScreen != null)
         {
-            settingsScreen.SetActive(true);
+            if (settingsScreen.active == true)
+            {
+                settingsScreen.SetActive(false);
+                pauzeScreen.SetActive(true);
+            }
+            else if(settingsScreen.active == false)
+            {
+                settingsScreen.SetActive(true);
+                pauzeScreen.SetActive(false);
+            }
+            
         }
     }
 
