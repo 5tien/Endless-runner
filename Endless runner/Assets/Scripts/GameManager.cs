@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     static public GameManager instance;
     [SerializeField] private UIManager uiManager;
 
+    public bool gameRunning;
     private bool coroutineRunning;
 
     public float score;
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(coroutineRunning == false)
+        if(coroutineRunning == false && gameRunning == true)
         {
             StartCoroutine("Timer");
             coroutineRunning = true;

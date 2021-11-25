@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] audioClips;
     
     [Header("Audio Volume Mixers")]
-    public AudioMixer mmasterMixer;
+    public AudioMixer masterMixer;
 
     [Header("Audio Source's")]
     public AudioSource soundEffectPlayer;
@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="sliderValue">the value of the volume slider</param>
     public void SetVolumeLevel(float sliderValue)
     {
-        mmasterMixer.SetFloat("MasterVolume", Mathf.Log10(sliderValue) * 20);
+        masterMixer.SetFloat("MasterVolume", Mathf.Log10(sliderValue) * 20);
         Debug.Log("Hello there");
     }
 

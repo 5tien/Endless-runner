@@ -70,8 +70,9 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.instance.PlaySoundEffect(0);
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene("Game");
         AudioManager.instance.PlayBackGroundMusic(2);
+        GameManager.instance.gameRunning = true;
+        SceneManager.LoadScene("Game");
     }
 
     /// <summary>
@@ -82,8 +83,9 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.instance.PlaySoundEffect(0);
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene("MainMenu");
         AudioManager.instance.PlayBackGroundMusic(1);
+        GameManager.instance.gameRunning = false;
+        SceneManager.LoadScene("MainMenu");
     }
 
     /// <summary>
@@ -113,7 +115,7 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// sets the DeathScreen gameobject on 
     /// </summary>
-    public void DeathScreeen()
+    public void DeathScreen()
     {
         if(deathScreen != null)
         {
