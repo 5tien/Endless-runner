@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
     static public GameManager instance;
     [SerializeField] private UIManager uiManager;
 
-    public int score;
-    public int highScore;
-    public int distance;
+    public bool gameRunning;
+    private bool coroutineRunning;
 
+    public float score;
+    public float highScore;
     private void Awake()
     {
         if (instance == null)
@@ -22,38 +23,47 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
-        highScore = PlayerPrefs.GetInt("HighScore",0);
+        highScore = PlayerPrefs.GetFloat("HighScore",0);
         uiManager.UpdateScoreUI();
+    }
+
+    private void Start()
+    {
+        AudioManager.instance.PlayBackGroundMusic(1);
+    }
+
+    private void Update()
+    {
+        if(coroutineRunning == false && gameRunning == true)
+        {
+            StartCoroutine("Timer");
+            coroutineRunning = true;
+        }
+    }
+
+    /// <summary>
+    /// adds 10 points every second.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator Timer()
+    {
+        AddScore(10);
+        yield return new WaitForSeconds(1f);
+        coroutineRunning = false;
     }
 
     /// <summary>
     /// Adds the given amount of point to the player and updates the high score if necessary.
     /// </summary>
     /// <param name="amount">the amount you want to add to the score</param>
-    public void AddScore(int amount)
+    public void AddScore(float amount)
     {
         score = score + amount;
         if (score >= highScore)
         {
             highScore = score;
-            PlayerPrefs.SetInt("HighScore", highScore);
+            PlayerPrefs.SetFloat("HighScore", highScore);
         }
         uiManager.UpdateScoreUI();
-    }
-
-    public void SetDistance(int amount)
-    {
-        if (amount > 0)
-            distance = amount;
-        else
-            distance = 0;
-
-        UIManager.instance.UpdateScoreUI();
-    }
-
-
-    public void Death()
-    {
-        
     }
 }
