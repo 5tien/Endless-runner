@@ -12,13 +12,25 @@ public class UIManager : MonoBehaviour
 
     [Header("Menu Objects")]
     [SerializeField] private GameObject pauzeScreen;
-    [SerializeField] private GameObject settingsScreen;
     [SerializeField] private GameObject mainMenuScreen;
+
+    [Header("Settings Screen")]
+    [SerializeField] private GameObject settingsScreen;
+    [SerializeField] private Slider volumeSlider;
 
     [Header("Death Screen Components")]
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private TextMeshProUGUI scoreDeathText;
     [SerializeField] private TextMeshProUGUI highDeathText;
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Volume") == true)
+        {
+            volumeSlider.value = PlayerPrefs.GetFloat("Volume");
+            VolumeSlider(PlayerPrefs.GetFloat("Volume"));
+        }
+    }
 
     void Update()
     {
@@ -26,6 +38,12 @@ public class UIManager : MonoBehaviour
         {
             PauzeScreen();
         }
+    }
+
+    public void VolumeSlider(float value)
+    {
+        AudioManager.instance.SetVolumeLevel(value);
+        PlayerPrefs.SetFloat("Volume", value);
     }
 
     /// <summary>
@@ -50,8 +68,10 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator LoadGame()
     {
-        AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0]);
+        AudioManager.instance.PlaySoundEffect(0);
         yield return new WaitForSeconds(0.5f);
+        AudioManager.instance.PlayBackGroundMusic(2);
+        GameManager.instance.gameRunning = true;
         SceneManager.LoadScene("Game");
     }
 
@@ -61,8 +81,10 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator LoadMainMenu()
     {
-        AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0]);
+        AudioManager.instance.PlaySoundEffect(0);
         yield return new WaitForSeconds(0.5f);
+        AudioManager.instance.PlayBackGroundMusic(1);
+        GameManager.instance.gameRunning = false;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -71,20 +93,29 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private IEnumerator ExitGame()
     {
-        AudioManager.instance.PlaySoundEffect(AudioManager.instance.audioClips[0]);
+        AudioManager.instance.PlaySoundEffect(0);
         yield return new WaitForSeconds(0.5f);
         Application.Quit();
     }
 
-    public void ResetHighScore()
+    /// <summary>
+    /// this will reset the highscore and also reset the saved highscore in player prefs
+    /// </summary>
+    public void ResetSavedData()
     {
-        PlayerPrefs.DeleteKey("HighScore");
+        AudioManager.instance.PlaySoundEffect(0);
+        PlayerPrefs.DeleteAll();
+        volumeSlider.value = 1;
+        AudioManager.instance.SetVolumeLevel(1);
         GameManager.instance.score = 0;
         GameManager.instance.highScore = 0;
         UpdateScoreUI();
     }
 
-    public void DeathScreeen()
+    /// <summary>
+    /// sets the DeathScreen gameobject on 
+    /// </summary>
+    public void DeathScreen()
     {
         if(deathScreen != null)
         {
@@ -105,17 +136,15 @@ public class UIManager : MonoBehaviour
             {
                 pauzeScreen.SetActive(false);
                 Time.timeScale = 1;
+                AudioManager.instance.PlaySoundEffect(0);
             }
             else if (pauzeScreen.active == false)
             {
                 pauzeScreen.SetActive(true);
                 settingsScreen.SetActive(false);
                 Time.timeScale = 0;
+                AudioManager.instance.PlaySoundEffect(0);
             }
-        }
-        else
-        {
-            Debug.LogError("The game cant be pauzed. because the pauzescreen = null");
         }
     }
 
@@ -130,11 +159,13 @@ public class UIManager : MonoBehaviour
             {
                 settingsScreen.SetActive(false);
                 mainMenuScreen.SetActive(true);
+                AudioManager.instance.PlaySoundEffect(0);
             }
             else if (settingsScreen.active == false)
             {
                 settingsScreen.SetActive(true);
                 mainMenuScreen.SetActive(false);
+                AudioManager.instance.PlaySoundEffect(0);
             }
         }else if(pauzeScreen != null)
         {
@@ -142,11 +173,13 @@ public class UIManager : MonoBehaviour
             {
                 settingsScreen.SetActive(false);
                 pauzeScreen.SetActive(true);
+                AudioManager.instance.PlaySoundEffect(0);
             }
             else if(settingsScreen.active == false)
             {
                 settingsScreen.SetActive(true);
                 pauzeScreen.SetActive(false);
+                AudioManager.instance.PlaySoundEffect(0);
             }
             
         }
