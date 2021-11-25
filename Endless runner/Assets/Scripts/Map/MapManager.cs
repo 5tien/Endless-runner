@@ -34,9 +34,22 @@ public class MapManager : MonoBehaviour
     {
         if (beginPosition == null || sections.Count == 0)
             Destroy(this);
+    }
 
+    void Start()
+    {
         floorPool = mapParent.GetComponent<Pool>();
         objectPool = obstacleParent.GetComponent<Pool>();
+
+        currentPosition = beginPosition.position;
+
+        for (int i = 0; i < minFloor; i++)
+        {
+            CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
+        }
+
+        StartCoroutine(CheckFloors());
+        StartCoroutine(CheckObstacles());
     }
 
     void CreateObstacle(int _type, GameObject _floor)
@@ -109,18 +122,5 @@ public class MapManager : MonoBehaviour
                     CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
 
         }
-    }
-
-    void Start()
-    {
-        currentPosition = beginPosition.position;
-
-        for (int i = 0; i < minFloor; i++)
-        {
-            CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
-        }
-
-        StartCoroutine(CheckFloors());
-        StartCoroutine(CheckObstacles());
     }
 }

@@ -9,6 +9,6 @@ public class Points : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Player>())
-            print("nice man, punten erbij");
+            GameManager.instance.AddScore(amount);
     }
 }

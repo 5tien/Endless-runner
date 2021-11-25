@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI HighScoreText;
+    [SerializeField] private TextMeshProUGUI distanceScore;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
     {
         scoreText.text = string.Format("Score: {0}", GameManager.instance.score);
         HighScoreText.text = string.Format("HighScore: {0}", GameManager.instance.highScore);
+        distanceScore.text = string.Format("Distance: {0}", GameManager.instance.distance);
     }
 
     /// <summary>

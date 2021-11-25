@@ -547,7 +547,7 @@ MonoBehaviour:
   - {fileID: 2802183351587098319, guid: a8fe9b7554e40d643a9eeef6a050c172, type: 3}
   beginPosition: {fileID: 1087693190}
   mapParent: {fileID: 1247208579}
-  minFloor: 15
+  minFloor: 25
   obstacles:
   - {fileID: 8745350718871171903, guid: f280974f629b9d24ab3daa7446b637a4, type: 3}
   - {fileID: 6939829511347933432, guid: 33bd5a7468ce9504185bdf3d67d76904, type: 3}
@@ -708,7 +708,7 @@ PrefabInstance:
     - target: {fileID: 8633550338878365733, guid: 4a6f8290136b4fc4cb09d7188d6b55bc,
         type: 3}
       propertyPath: speed
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8633550338878365733, guid: 4a6f8290136b4fc4cb09d7188d6b55bc,
         type: 3}

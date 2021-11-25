@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     public int score;
     public int highScore;
+    public int distance;
+
     private void Awake()
     {
         if (instance == null)
@@ -34,5 +36,21 @@ public class GameManager : MonoBehaviour
             highScore = score;
         }
         UIManager.instance.UpdateScoreUI();
+    }
+
+    public void SetDistance(int amount)
+    {
+        if (amount > 0)
+            distance = amount;
+        else
+            distance = 0;
+
+        UIManager.instance.UpdateScoreUI();
+    }
+
+
+    public void Death()
+    {
+        
     }
 }

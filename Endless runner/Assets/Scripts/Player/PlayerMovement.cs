@@ -27,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Jump();
         RotatePlayer();
+
+        speed += Time.deltaTime / 100;
+
+        GameManager.instance.SetDistance((int)this.transform.position.x);
     }
 
     bool IsOnFloor()
