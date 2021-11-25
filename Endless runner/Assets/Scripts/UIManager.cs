@@ -12,13 +12,25 @@ public class UIManager : MonoBehaviour
 
     [Header("Menu Objects")]
     [SerializeField] private GameObject pauzeScreen;
-    [SerializeField] private GameObject settingsScreen;
     [SerializeField] private GameObject mainMenuScreen;
+
+    [Header("Settings Screen")]
+    [SerializeField] private GameObject settingsScreen;
+    [SerializeField] private Slider volumeSlider;
 
     [Header("Death Screen Components")]
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private TextMeshProUGUI scoreDeathText;
     [SerializeField] private TextMeshProUGUI highDeathText;
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Volume") == true)
+        {
+            volumeSlider.value = PlayerPrefs.GetFloat("Volume");
+            VolumeSlider(PlayerPrefs.GetFloat("Volume"));
+        }
+    }
 
     void Update()
     {
@@ -26,6 +38,12 @@ public class UIManager : MonoBehaviour
         {
             PauzeScreen();
         }
+    }
+
+    public void VolumeSlider(float value)
+    {
+        AudioManager.instance.SetVolumeLevel(value);
+        PlayerPrefs.SetFloat("Volume", value);
     }
 
     /// <summary>
@@ -81,10 +99,12 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// this will reset the highscore and also reset the saved highscore in player prefs
     /// </summary>
-    public void ResetHighScore()
+    public void ResetSavedData()
     {
         AudioManager.instance.PlaySoundEffect(0);
-        PlayerPrefs.DeleteKey("HighScore");
+        PlayerPrefs.DeleteAll();
+        volumeSlider.value = 1;
+        AudioManager.instance.SetVolumeLevel(1);
         GameManager.instance.score = 0;
         GameManager.instance.highScore = 0;
         UpdateScoreUI();
