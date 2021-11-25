@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateScoreUI();
     }
 
+    private void Start()
+    {
+        AudioManager.instance.PlayBackGroundMusic(1);
+    }
+
     /// <summary>
     /// Adds the given amount of point to the player and updates the high score if necessary.
     /// </summary>

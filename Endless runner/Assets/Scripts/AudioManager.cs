@@ -23,13 +23,23 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlaySoundEffect(AudioClip audioClip)
+    /// <summary>
+    /// plays a sound ones
+    /// </summary>
+    /// <param name="number">the number of the audioclip in the audioclips array</param>
+    public void PlaySoundEffect(int number)
     {
-        soundEffectPlayer.PlayOneShot(audioClip);
+        soundEffectPlayer.PlayOneShot(audioClips[number]);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="number"></param>
     public void PlayBackGroundMusic(int number)
     {
+        backgroundMusicPlayer.loop = true;
+        backgroundMusicPlayer.clip = audioClips[number];
         backgroundMusicPlayer.Play();
     }
 }
