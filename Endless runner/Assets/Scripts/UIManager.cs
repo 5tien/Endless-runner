@@ -144,10 +144,6 @@ public class UIManager : MonoBehaviour
                 AudioManager.instance.PlaySoundEffect(0);
             }
         }
-        else
-        {
-            Debug.LogError("The game cant be pauzed. because the pauzescreen = null");
-        }
     }
 
     /// <summary>
