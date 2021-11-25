@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     static public GameManager instance;
+    [SerializeField] private UIManager uiManager;
 
     public int score;
     public int highScore;
@@ -21,7 +22,8 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        highScore = PlayerPrefs.GetInt("HighScore",0);
+        uiManager.UpdateScoreUI();
     }
 
     /// <summary>
@@ -34,8 +36,9 @@ public class GameManager : MonoBehaviour
         if (score >= highScore)
         {
             highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
         }
-        UIManager.instance.UpdateScoreUI();
+        uiManager.UpdateScoreUI();
     }
 
     public void SetDistance(int amount)
