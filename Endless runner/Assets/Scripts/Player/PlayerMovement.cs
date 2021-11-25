@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
                 rotation = this.transform.rotation.z - 25;
             }
             
-            if (used != 0 && this.transform.rotation.z > rotation && this.transform.rotation.z < rotation + (used == 0 ? used : 25))
+            if (used != 0 && this.transform.rotation.z > rotation && this.transform.rotation.z < rotation)
                 print("DAMN");
 
 
