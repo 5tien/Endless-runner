@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public float score;
     public float highScore;
+    public float distance;
+
     private void Awake()
     {
         if (instance == null)
@@ -36,7 +38,8 @@ public class GameManager : MonoBehaviour
     {
         if(coroutineRunning == false && gameRunning == true)
         {
-            StartCoroutine("Timer");
+            StartCoroutine(Timer());
+            //StartCoroutine("Timer");
             coroutineRunning = true;
         }
     }
@@ -65,5 +68,20 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("HighScore", highScore);
         }
         uiManager.UpdateScoreUI();
+    }
+
+    public void SetDistance(int amount)
+    {
+        if (amount > 0)
+            distance = amount;
+        else
+            distance = 0;
+
+        uiManager.UpdateScoreUI();
+    }
+
+    public void Death()
+    {
+        uiManager.DeathScreen();
     }
 }

@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [Header("Score Text")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private TextMeshProUGUI distanceText;
 
     [Header("Menu Objects")]
     [SerializeField] private GameObject pauzeScreen;
@@ -55,6 +56,7 @@ public class UIManager : MonoBehaviour
         {
             scoreText.text = string.Format("Score: {0}", GameManager.instance.score);
             highScoreText.text = string.Format("HighScore: {0}", GameManager.instance.highScore);
+            distanceText.text = string.Format("Distance: {0}m", GameManager.instance.distance);
         }
         else
         {
@@ -122,6 +124,7 @@ public class UIManager : MonoBehaviour
             deathScreen.SetActive(true);
             scoreDeathText.text = string.Format("Your Score: {0}", GameManager.instance.score);
             highDeathText.text = string.Format("Your HighScore: {0}", GameManager.instance.highScore);
+
         }
     }
 

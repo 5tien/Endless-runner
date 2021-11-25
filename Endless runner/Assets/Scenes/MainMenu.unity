@@ -151,8 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 6245326305692086135}
+  gameRunning: 0
   score: 0
   highScore: 0
+  distance: 0
 --- !u!4 &109018746
 Transform:
   m_ObjectHideFlags: 0
@@ -1042,6 +1044,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6245326305692086135}
+    - target: {fileID: 3594850634731987823, guid: 4e55450a5e9cac6449ebbcbde18bbe10,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594850634731987823, guid: 4e55450a5e9cac6449ebbcbde18bbe10,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594850634731987823, guid: 4e55450a5e9cac6449ebbcbde18bbe10,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594850634731987823, guid: 4e55450a5e9cac6449ebbcbde18bbe10,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4178468529483603528, guid: 4e55450a5e9cac6449ebbcbde18bbe10,
         type: 3}
       propertyPath: m_Pivot.x
