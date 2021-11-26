@@ -20,13 +20,9 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(this);
-        }
 
         DontDestroyOnLoad(gameObject);
     }
@@ -40,7 +36,6 @@ public class AudioManager : MonoBehaviour
     public void SetVolumeLevel(float sliderValue)
     {
         masterMixer.SetFloat("MasterVolume", Mathf.Log10(sliderValue) * 20);
-        Debug.Log("Hello there");
     }
 
     /// <summary>
@@ -58,8 +53,11 @@ public class AudioManager : MonoBehaviour
     /// <param name="number"></param>
     public void PlayBackGroundMusic(int number)
     {
+        backgroundMusicPlayer.Stop();
+        backgroundMusicPlayer.clip = null;
         backgroundMusicPlayer.loop = true;
         backgroundMusicPlayer.clip = audioClips[number];
         backgroundMusicPlayer.Play();
+
     }
 }
