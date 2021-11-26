@@ -563,6 +563,11 @@ PrefabInstance:
       propertyPath: jumpPower
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 7389451602932493594, guid: b29bfa4c665243a4185b078315a16521,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7389451602932493595, guid: b29bfa4c665243a4185b078315a16521,
         type: 3}
       propertyPath: m_RootOrder
