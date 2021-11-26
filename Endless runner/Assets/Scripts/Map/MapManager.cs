@@ -56,7 +56,7 @@ public class MapManager : MonoBehaviour
     {
         GameObject newObstacle = objectPool.GetObject(_type, Vector3.zero, Quaternion.identity, null);
 
-        newObstacle.transform.position = _floor.transform.position + new Vector3(0, -newObstacle.GetComponent<Obstacle>().spawnPoint.position.y);
+        newObstacle.transform.position = _floor.transform.position + new Vector3(0, 4.5f - newObstacle.GetComponent<Obstacle>().spawnPoint.position.y);
         newObstacle.transform.rotation = _floor.transform.rotation;
 
         placedObstacles.Add(newObstacle);
@@ -91,7 +91,7 @@ public class MapManager : MonoBehaviour
             {
                 GameObject obstacle = placedObstacles[i];
 
-                if (Camera.main.transform.position.x - 25 > obstacle.transform.position.x)
+                if (Camera.main.transform.position.x - 30 > obstacle.transform.position.x)
                 {
                     placedObstacles.Remove(obstacle);
                     obstacle.GetComponent<PoolItem>().ReturnToPool();
@@ -110,7 +110,7 @@ public class MapManager : MonoBehaviour
             {
                 GameObject floor = placedSections[i];
 
-                if (Camera.main.transform.position.x - 25 > floor.GetComponent<Floor>().End.position.x)
+                if (Camera.main.transform.position.x - 30 > floor.GetComponent<Floor>().End.position.x)
                 {
                     placedSections.Remove(floor);
                     floor.GetComponent<PoolItem>().ReturnToPool();
