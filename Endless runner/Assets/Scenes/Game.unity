@@ -581,7 +581,7 @@ PrefabInstance:
     - target: {fileID: 7389451602932493595, guid: b29bfa4c665243a4185b078315a16521,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7389451602932493595, guid: b29bfa4c665243a4185b078315a16521,
         type: 3}
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   - {fileID: 5615481105113527523, guid: 17b84c695a41cf84bab37e2f86d848a1, type: 3}
   - {fileID: 5615481105113527523, guid: 17b84c695a41cf84bab37e2f86d848a1, type: 3}
   obstacleParent: {fileID: 1023103055}
-  spawnChance: 100
+  spawnChance: 15
 --- !u!4 &1088209699
 Transform:
   m_ObjectHideFlags: 0
@@ -1932,6 +1932,7 @@ MonoBehaviour:
   expansionSize: 1
   poolPrefabs:
   - {fileID: 4979950343411233354, guid: 8cd2013c0b2349c4398fe6d6b29df682, type: 3}
+  - {fileID: 4979950343411233354, guid: 8cd2013c0b2349c4398fe6d6b29df682, type: 3}
   poolSize: 5
 --- !u!1 &1544217156
 GameObject:
@@ -2009,7 +2010,7 @@ PrefabInstance:
     - target: {fileID: 3255636484526779051, guid: 8cd2013c0b2349c4398fe6d6b29df682,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3255636484526779051, guid: 8cd2013c0b2349c4398fe6d6b29df682,
         type: 3}
@@ -2152,7 +2153,7 @@ PrefabInstance:
     - target: {fileID: 3255636484526779051, guid: 8cd2013c0b2349c4398fe6d6b29df682,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3255636484526779051, guid: 8cd2013c0b2349c4398fe6d6b29df682,
         type: 3}
@@ -2227,7 +2228,7 @@ PrefabInstance:
     - target: {fileID: 3255636484526779051, guid: 8cd2013c0b2349c4398fe6d6b29df682,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3255636484526779051, guid: 8cd2013c0b2349c4398fe6d6b29df682,
         type: 3}

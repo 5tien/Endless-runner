@@ -19,7 +19,7 @@ public class Pool : MonoBehaviour
     //private Stack<PoolItem> objectPool;
     private List<Stack<PoolItem>> stack = new List<Stack<PoolItem>>();
 
-    public void Start()
+    private void Awake()
     {
         for (int i = 0; i < poolPrefabs.Count; i++)
         {
