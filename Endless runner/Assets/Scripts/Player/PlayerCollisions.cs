@@ -9,12 +9,11 @@ public class PlayerCollisions : MonoBehaviour
         print("ded");
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Obstacle obstacle = other.transform.GetComponent<Obstacle>();
+        Obstacle obstacle = collision.transform.GetComponent<Obstacle>();
 
         if (obstacle && obstacle.CausesDamage == true)
             Death();
     }
-
 }
