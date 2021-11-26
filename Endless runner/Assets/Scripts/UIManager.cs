@@ -29,22 +29,30 @@ public class UIManager : MonoBehaviour
         if (PlayerPrefs.HasKey("Volume") == true)
         {
             volumeSlider.value = PlayerPrefs.GetFloat("Volume");
-            VolumeSlider(PlayerPrefs.GetFloat("Volume"));
+            VolumeSlider(volumeSlider);
         }
+        else
+        {
+            VolumeSlider(volumeSlider);
+        }
+
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+            AudioManager.instance.PlayBackGroundMusic(1);
+        else if (SceneManager.GetActiveScene().name == "Game")
+            AudioManager.instance.PlayBackGroundMusic(2);
+        
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             PauzeScreen();
-        }
     }
 
-    public void VolumeSlider(float value)
+    public void VolumeSlider(Slider slider)
     {
-        AudioManager.instance.SetVolumeLevel(value);
-        PlayerPrefs.SetFloat("Volume", value);
+        AudioManager.instance.SetVolumeLevel(slider.value);
+        PlayerPrefs.SetFloat("Volume", slider.value);
     }
 
     /// <summary>
@@ -55,8 +63,8 @@ public class UIManager : MonoBehaviour
         if (scoreText != null || highScoreText != null)
         {
             scoreText.text = string.Format("Score: {0}", GameManager.instance.score);
-            distanceText.text = string.Format("Distance: {0}m", GameManager.instance.distance);
             highScoreText.text = string.Format("HighScore: {0}", GameManager.instance.highScore);
+            distanceText.text = string.Format("Distance: {0}m", GameManager.instance.distance);
         }
     }
 
@@ -103,8 +111,8 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.instance.PlaySoundEffect(0);
         PlayerPrefs.DeleteAll();
-        volumeSlider.value = 1;
-        AudioManager.instance.SetVolumeLevel(1);
+        volumeSlider.value = 0.2f;
+        AudioManager.instance.SetVolumeLevel(volumeSlider.value);
         GameManager.instance.score = 0;
         GameManager.instance.highScore = 0;
         UpdateScoreUI();

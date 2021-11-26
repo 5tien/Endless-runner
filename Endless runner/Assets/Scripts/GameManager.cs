@@ -17,21 +17,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(this);
-        }
 
         highScore = PlayerPrefs.GetFloat("HighScore",0);
         uiManager.UpdateScoreUI();
-    }
-
-    private void Start()
-    {
-        AudioManager.instance.PlayBackGroundMusic(1);
     }
 
     private void Update()
