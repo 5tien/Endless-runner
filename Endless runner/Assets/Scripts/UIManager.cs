@@ -128,7 +128,6 @@ public class UIManager : MonoBehaviour
             deathScreen.SetActive(true);
             scoreDeathText.text = string.Format("Your Score: {0}", GameManager.instance.score);
             highDeathText.text = string.Format("Your HighScore: {0}", GameManager.instance.highScore);
-
         }
     }
 
