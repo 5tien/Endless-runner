@@ -75,7 +75,7 @@ public class MapManager : MonoBehaviour
         placedSections.Add(newFloor);
 
         if (Random.Range(0, 100) <= spawnChance - 1)
-            CreateObstacle(Random.Range(0, 2), newFloor);
+            CreateObstacle(Random.Range(0, obstacles.Count), newFloor);
 
         if (spawnChance < 30)
             spawnChance += 0.08f;
