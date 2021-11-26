@@ -74,5 +74,6 @@ public class GameManager : MonoBehaviour
     public void Death()
     {
         uiManager.DeathScreen();
+        AudioManager.instance.PlaySoundEffect(3);
     }
 }

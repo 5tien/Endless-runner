@@ -49,6 +49,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1b2a5d20d4cfa05479ad1346e5f58c27, type: 3}
   - {fileID: 8300000, guid: 9be590b85b6a71149b5cb747afd73393, type: 3}
   - {fileID: 8300000, guid: d613008d09bc4404faa62cca30355c12, type: 3}
+  - {fileID: 8300000, guid: cea2a575cb2edc840b83eef717edc7c7, type: 3}
   masterMixer: {fileID: 24100000, guid: 07f3563c73a0b4b48bad6de2a8b96da5, type: 2}
   soundEffectPlayer: {fileID: 3170338720990670263}
   backgroundMusicPlayer: {fileID: 1146105780090239064}
@@ -64,7 +65,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 07f3563c73a0b4b48bad6de2a8b96da5,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -161,7 +162,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 07f3563c73a0b4b48bad6de2a8b96da5,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
