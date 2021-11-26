@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed;
 
 
-    private Rigidbody rigidbody;
+    private Rigidbody2D rigidbody;
 
     private Transform ray_point;
 
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        rigidbody = this.transform.GetComponent<Rigidbody>();
+        rigidbody = this.transform.GetComponent<Rigidbody2D>();
         ray_point = this.transform.Find("Ground Part");
     }
 
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsOnFloor()
     {
-        RaycastHit[] hits = Physics.RaycastAll(this.transform.position, ray_point.position - this.transform.position, 1);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(this.transform.position, ray_point.position - this.transform.position, 1);
 
         for (int i = 0; i < hits.Length; i++)
             if (hits[i].transform.GetComponent<Floor>())
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 oldVelocity = rigidbody.velocity;
 
-            rigidbody.velocity = new Vector3(speed, oldVelocity.y, oldVelocity.z);
+            rigidbody.velocity = new Vector2(speed, oldVelocity.y);
         }
         else if (rigidbody.velocity.x < speed)
             rigidbody.AddForce(new Vector3(speed, 0));
@@ -65,7 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
         while (IsOnFloor() == false)
         {
-            print("YIKES");
+
+
             if (Input.GetKey(KeyCode.LeftArrow) && (used == 0 || used == 2))
             {
                 used = 1;
@@ -91,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsOnFloor() == true)
         {
-            rigidbody.AddForce(new Vector3(0, jumpPower * 10));
+            rigidbody.AddForce(new Vector2(0, jumpPower * 10));
             StartCoroutine(Spin());
         }
     }
@@ -114,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             yRotate = -1f;
 
 
-        rigidbody.angularVelocity = Vector3.zero;
+        rigidbody.angularVelocity = 0;
 
         this.transform.Rotate(0, 0, yRotate * rotationSpeed * Time.deltaTime);
     }

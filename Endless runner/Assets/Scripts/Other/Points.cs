@@ -5,10 +5,11 @@ using UnityEngine;
 public class Points : MonoBehaviour
 {
     [SerializeField] private int amount;
-
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.GetComponent<Player>())
+        print(collision.transform);
+
+        if (collision.GetComponent<Player>())
             GameManager.instance.AddScore(amount);
     }
 }
