@@ -40,7 +40,6 @@ public class AudioManager : MonoBehaviour
     public void SetVolumeLevel(float sliderValue)
     {
         masterMixer.SetFloat("MasterVolume", Mathf.Log10(sliderValue) * 20);
-        Debug.Log("Hello there");
     }
 
     /// <summary>

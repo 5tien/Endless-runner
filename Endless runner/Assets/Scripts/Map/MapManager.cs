@@ -56,7 +56,7 @@ public class MapManager : MonoBehaviour
     {
         GameObject newObstacle = objectPool.GetObject(_type, Vector3.zero, Quaternion.identity, null);
 
-        newObstacle.transform.position = _floor.transform.position + new Vector3(0, _floor.transform.localScale.y / 2 - (newObstacle.GetComponent<Obstacle>().spawnPoint.position.y - newObstacle.transform.position.y), 0);
+        newObstacle.transform.position = _floor.transform.position + new Vector3(0, -newObstacle.GetComponent<Obstacle>().spawnPoint.position.y);
         newObstacle.transform.rotation = _floor.transform.rotation;
 
         placedObstacles.Add(newObstacle);
@@ -69,9 +69,9 @@ public class MapManager : MonoBehaviour
         Floor floor = newFloor.GetComponent<Floor>();
 
         newFloor.transform.rotation = Quaternion.Euler(0, 0, -_rotation);
-        newFloor.transform.position = currentPosition + (newFloor.transform.position - floor.Begin.position);
+        newFloor.transform.position = currentPosition + (newFloor.transform.position - floor.End.position);
 
-        currentPosition = floor.End.position;
+        currentPosition = floor.Begin.position;
         placedSections.Add(newFloor);
 
         if (Random.Range(0, 100) <= spawnChance - 1)
@@ -120,7 +120,6 @@ public class MapManager : MonoBehaviour
             if (placedSections.Count < minFloor)
                 for (int i = 0; i < minFloor - placedSections.Count; i++)
                     CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
-
         }
     }
 }

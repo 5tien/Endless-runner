@@ -55,12 +55,8 @@ public class UIManager : MonoBehaviour
         if (scoreText != null || highScoreText != null)
         {
             scoreText.text = string.Format("Score: {0}", GameManager.instance.score);
-            highScoreText.text = string.Format("HighScore: {0}", GameManager.instance.highScore);
             distanceText.text = string.Format("Distance: {0}m", GameManager.instance.distance);
-        }
-        else
-        {
-            Debug.LogError("ScoreText and/or HighScoreText are/is empty");
+            highScoreText.text = string.Format("HighScore: {0}", GameManager.instance.highScore);
         }
     }
 
