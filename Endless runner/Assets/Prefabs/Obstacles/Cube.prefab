@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2236467113765396130}
-  CausesDamage: 0
+  CausesDamage: 1
 --- !u!114 &2542760802965801743
 MonoBehaviour:
   m_ObjectHideFlags: 0

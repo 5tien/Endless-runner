@@ -7,7 +7,7 @@ public class Points : MonoBehaviour
     [SerializeField] private int amount;
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.name);
+        print(collision.transform);
 
         if (collision.GetComponent<Player>())
             GameManager.instance.AddScore(amount);
