@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCollisions : MonoBehaviour
+public class PlayerCollisions : MonoBehaviour // Sten
 {
     [SerializeField] private bool DieFromFloor;
-
-    void Death()
-    {
-        print("ded");
-    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {

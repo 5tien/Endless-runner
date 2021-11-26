@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMover : MonoBehaviour
+public class CameraMover : MonoBehaviour // Sten
 {
     [SerializeField] private GameObject target;
     [SerializeField] private Vector3 offset;

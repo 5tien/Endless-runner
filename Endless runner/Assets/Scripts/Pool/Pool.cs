@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pool : MonoBehaviour
+public class Pool : MonoBehaviour // Sten
 {
     [Tooltip("Set this to true if you want to expand the pool if you run out of pooled objects.")]
     [SerializeField] private bool autoExpand = false;

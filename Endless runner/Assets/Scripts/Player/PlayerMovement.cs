@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour // Sten
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;

@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Points : MonoBehaviour
+public class Points : MonoBehaviour // Sten
 {
     [SerializeField] private int amount;
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.transform);
-
-        if (collision.GetComponent<Player>())
-            GameManager.instance.AddScore(amount);
+        if (collision.GetComponent<Player>())   // Checks if it's the player
+            GameManager.instance.AddScore(amount);  // Gives given amount of points
     }
 }

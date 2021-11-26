@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolItem : MonoBehaviour
+public class PoolItem : MonoBehaviour // Sten
 {
     private Pool myPool;
     public Pool pool { set { myPool = value; } }
