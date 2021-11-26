@@ -28,8 +28,9 @@ public class MapManager : MonoBehaviour // Sten
     private List<GameObject> placedSections = new List<GameObject>();
     private List<GameObject> placedObstacles = new List<GameObject>();
 
-    private Vector3 currentPosition;
+    private Vector3 currentPosition; // Needed to know where the previous floor was placed
 
+    // Will Destroy the script if it can't spawn any floors
     void Awake()
     {
         if (beginPosition == null || sections.Count == 0)
@@ -43,58 +44,64 @@ public class MapManager : MonoBehaviour // Sten
 
         currentPosition = beginPosition.position;
 
+        // Makes some premade floors
         for (int i = 0; i < minFloor; i++)
-        {
             CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
-        }
 
-        StartCoroutine(CheckFloors());
-        StartCoroutine(CheckObstacles());
+        StartCoroutine(CheckFloors());      // Needed to despawn floors
+        StartCoroutine(CheckObstacles());   // Needed to despawn obstacles
     }
 
-    void CreateObstacle(int _type, GameObject _floor)
+    // Creates a given obstacle (type) and spawns it onto a floor
+    void CreateObstacle(int type, GameObject floor)
     {
-        GameObject newObstacle = objectPool.GetObject(_type, Vector3.zero, Quaternion.identity, null);
+        GameObject newObstacle = objectPool.GetObject(type, Vector3.zero, Quaternion.identity, null); // Gets the object from pool
 
-        newObstacle.transform.position = _floor.transform.position + new Vector3(0, 4.5f - newObstacle.GetComponent<Obstacle>().spawnPoint.position.y);
-        newObstacle.transform.rotation = _floor.transform.rotation;
+        // Sets position & rotation
+        newObstacle.transform.position = floor.transform.position + new Vector3(0, 4.5f - newObstacle.GetComponent<Obstacle>().spawnPoint.position.y);
+        newObstacle.transform.rotation = floor.transform.rotation;
 
-        placedObstacles.Add(newObstacle);
+        placedObstacles.Add(newObstacle); // Adds into a stack for despawning
     }
 
-    void CreateFloor(int _type, float _rotation)
+    // Creates a given floor (type) with given rotation
+    void CreateFloor(int type, float rotation)
     {
-        GameObject newFloor = floorPool.GetObject(_type, Vector3.zero, Quaternion.identity, null);
+        GameObject newFloor = floorPool.GetObject(type, Vector3.zero, Quaternion.identity, null); // Gets floor from pool
 
         Floor floor = newFloor.GetComponent<Floor>();
 
-        newFloor.transform.rotation = Quaternion.Euler(0, 0, -_rotation);
+        // calculates the position needed to connect and sets it with rotation
+        newFloor.transform.rotation = Quaternion.Euler(0, 0, -rotation);
         newFloor.transform.position = currentPosition + (newFloor.transform.position - floor.End.position);
 
         currentPosition = floor.Begin.position;
         placedSections.Add(newFloor);
 
+        // Spawn chance for spawning an obstacle
         if (Random.Range(0, 100) <= spawnChance - 1)
             CreateObstacle(Random.Range(0, obstacles.Count), newFloor);
 
+        // Ups the spawnchance to make it harder over time
         if (spawnChance < 30)
             spawnChance += 0.08f;
     }
 
+    // Coroutine for despawning obstacles
     IEnumerator CheckObstacles()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1); // waits every second to check
 
             for (int i = 0; i < placedObstacles.Count; i++)
             {
                 GameObject obstacle = placedObstacles[i];
 
-                if (Camera.main.transform.position.x - 30 > obstacle.transform.position.x)
+                if (Camera.main.transform.position.x - 30 > obstacle.transform.position.x) // checks if it's out of players view
                 {
-                    placedObstacles.Remove(obstacle);
-                    obstacle.GetComponent<PoolItem>().ReturnToPool();
+                    obstacle.GetComponent<PoolItem>().ReturnToPool(); // returns to pool
+                    placedObstacles.Remove(obstacle);                 // removes from list
                 }
             }
         }
@@ -104,22 +111,23 @@ public class MapManager : MonoBehaviour // Sten
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1); // waits every second to check
 
             for (int i = 0; i < placedSections.Count; i++)
             {
                 GameObject floor = placedSections[i];
 
-                if (Camera.main.transform.position.x - 30 > floor.GetComponent<Floor>().End.position.x)
+                if (Camera.main.transform.position.x - 30 > floor.GetComponent<Floor>().End.position.x) // checks if it's out of players view
                 {
-                    placedSections.Remove(floor);
-                    floor.GetComponent<PoolItem>().ReturnToPool();
+                    floor.GetComponent<PoolItem>().ReturnToPool(); // returns to pool
+                    placedSections.Remove(floor);                  // removes from list
                 }
             }
 
+            // Makes new floors if needed
             if (placedSections.Count < minFloor)
                 for (int i = 0; i < minFloor - placedSections.Count; i++)
-                    CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25));
+                    CreateFloor(Random.Range(0, sections.Count), Random.Range(4, 25)); // makes a floor with a random rotation from 4 till 25 (So it will always go down)
         }
     }
 }

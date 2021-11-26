@@ -6,8 +6,9 @@ public class PoolItem : MonoBehaviour // Sten
 {
     private Pool myPool;
     public Pool pool { set { myPool = value; } }
-    public int ID;
+    public int ID; // ID needed to indentify the correct stack
 
+    // Sets up the item and activates it
     public void Init(Vector3 position, Quaternion rotation, Transform parent)
     {
         transform.position = position;
@@ -17,6 +18,7 @@ public class PoolItem : MonoBehaviour // Sten
         Activate();
     }
 
+    // activate & deactivate blueprint
     protected virtual void Activate()
     {
         //
@@ -26,6 +28,7 @@ public class PoolItem : MonoBehaviour // Sten
         //
     }
 
+    // Deactivates the item & returns it back into the stack
     public void ReturnToPool()
     {
         Deactivate();

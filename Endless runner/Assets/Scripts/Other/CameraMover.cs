@@ -9,9 +9,11 @@ public class CameraMover : MonoBehaviour // Sten
 
     void Update()
     {
+        // stops if no target selected
         if (target == null)
             return;
 
+        // Sets the position with given offset
         this.transform.position = new Vector3(0, 0, -10) + target.transform.position + offset;       
     }
 }

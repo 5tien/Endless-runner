@@ -11,6 +11,7 @@ public class PlayerCollisions : MonoBehaviour // Sten
         Obstacle obstacle = collision.transform.GetComponent<Obstacle>();
         Floor floor = collision.transform.GetComponent<Floor>();
 
+        // Will continue death if it's an damagable obstacle or when it hits the floor
         if ((obstacle && obstacle.CausesDamage) || (DieFromFloor && floor))
             GameManager.instance.Death();
     }
