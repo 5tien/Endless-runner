@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9be590b85b6a71149b5cb747afd73393, type: 3}
   - {fileID: 8300000, guid: d613008d09bc4404faa62cca30355c12, type: 3}
   - {fileID: 8300000, guid: cea2a575cb2edc840b83eef717edc7c7, type: 3}
+  - {fileID: 8300000, guid: 7927501dfec4617499096201e863b740, type: 3}
   masterMixer: {fileID: 24100000, guid: 07f3563c73a0b4b48bad6de2a8b96da5, type: 2}
   soundEffectPlayer: {fileID: 3170338720990670263}
   backgroundMusicPlayer: {fileID: 1146105780090239064}

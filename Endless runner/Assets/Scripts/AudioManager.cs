@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour //Daan
 {
     static public AudioManager instance;
 
@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
     {
         masterMixer.SetFloat("MasterVolume", Mathf.Log10(sliderValue) * 20);
     }
+    // ========== My Code ======================
 
     /// <summary>
     /// plays a sound ones
@@ -53,11 +54,11 @@ public class AudioManager : MonoBehaviour
     /// <param name="number"></param>
     public void PlayBackGroundMusic(int number)
     {
-        backgroundMusicPlayer.Stop();
-        backgroundMusicPlayer.clip = null;
-        backgroundMusicPlayer.loop = true;
-        backgroundMusicPlayer.clip = audioClips[number];
-        backgroundMusicPlayer.Play();
+        backgroundMusicPlayer.Stop(); //stop playing the song if one is playing
+        backgroundMusicPlayer.clip = null; // to make sure the clip = empty
+        backgroundMusicPlayer.loop = true; // to make sure its on loop;
+        backgroundMusicPlayer.clip = audioClips[number]; //add the wanted music in clip
+        backgroundMusicPlayer.Play(); //play
 
     }
 }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour //Daan
 {
     static public GameManager instance;
+
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private GameObject player;
 
     public bool gameRunning;
     private bool coroutineRunning;
@@ -35,10 +37,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// adds 10 points every second.
-    /// </summary>
-    /// <returns></returns>
+    // adds 10 points every second.
     private IEnumerator Timer()
     {
         AddScore(10);
@@ -61,6 +60,8 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateScoreUI();
     }
 
+    // Sten \/
+
     public void SetDistance(int amount)
     {
         if (amount > 0)
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void Death()
     {
+        Destroy(player);
         uiManager.DeathScreen();
         AudioManager.instance.PlaySoundEffect(3);
     }

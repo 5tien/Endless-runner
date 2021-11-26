@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour //Daan
 {
     [Header("Score Text")]
     [SerializeField] private TextMeshProUGUI scoreText;
@@ -69,33 +69,7 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// loads the game scene
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator LoadGame()
-    {
-        AudioManager.instance.PlaySoundEffect(0);
-        yield return new WaitForSeconds(0.5f);
-        AudioManager.instance.PlayBackGroundMusic(2);
-        GameManager.instance.gameRunning = true;
-        SceneManager.LoadScene("Game");
-    }
-
-    /// <summary>
-    /// loads the mainmenu scene
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator LoadMainMenu()
-    {
-        AudioManager.instance.PlaySoundEffect(0);
-        yield return new WaitForSeconds(0.5f);
-        AudioManager.instance.PlayBackGroundMusic(1);
-        GameManager.instance.gameRunning = false;
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    /// <summary>
-    /// Closes the game
+    /// Closes the game with a small delay to play a click sound effect
     /// </summary>
     private IEnumerator ExitGame()
     {
@@ -155,7 +129,7 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// if the SettingsScreen is active it will be turned of and if SettingsScreen is inactive it wil be turned on;
+    /// if the SettingsScreen is active it will be turned of and if SettingsScreen is inactive it wil be turned on. als turns the mainmenu/pauzescreen off and on
     /// </summary>
     public void SettingsScreen()
     {
@@ -191,16 +165,33 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ExitGameButton()
-    {
-        StartCoroutine("ExitGame");
-    }
+    /// <summary>
+    /// loads the mainmenu scene, plays a click sounds and sets background music
+    /// </summary>
     public void LoadMainMenuButton()
     {
-        StartCoroutine("LoadMainMenu");
+        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayBackGroundMusic(1);
+        GameManager.instance.gameRunning = false;
+        SceneManager.LoadScene("MainMenu");
     }
+
+    /// <summary>
+    /// loads the game scene, plays a click sounds and sets background music 
+    /// </summary>
     public void LoadGameButton()
     {
-        StartCoroutine("LoadGame");
+        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayBackGroundMusic(2);
+        GameManager.instance.gameRunning = true;
+        SceneManager.LoadScene("Game");
+    }
+
+    /// <summary>
+    /// Starts the ExitGame Coroutine need to be a public void for the button
+    /// </summary>
+    public void ExitGameButton()
+    {
+        StartCoroutine(ExitGame());
     }
 }
